@@ -52,7 +52,7 @@ const ShowMessage = () => {
 
 	return (
 		<div>
-			<p>{!data ? "Loading......" : data}</p>
+			<p>{!data ? "Loading..." : data}</p>
 		</div>
 	);
 }
