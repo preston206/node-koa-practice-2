@@ -2,12 +2,12 @@
   "name": "full-stack-practice-1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "engines": {
     "node": "20.14.0"
   },
   "scripts": {
-    "build": "rm -rf hei && node index.js",
+    "build": "rm -rf hei && node server/index.js",
     "start": "nodemon server/index.js"
   },
   "keywords": [],
