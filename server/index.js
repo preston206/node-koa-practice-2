@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 8080;
 const server = new Koa();
 const router = new Router();
 
-router.get("/", (ctx) => ctx.body = "Oh, hi there.");
+// router.get("/", (ctx) => ctx.body = "Oh, hi there.");
+
+router.get("/", (ctx) => serve(path.resolve(__dirname, 'client', 'dist', 'index.html')));
+
 router.get("/test", (ctx) => {
   ctx.body = {message: "Hello, you have passed the test."}
 })
