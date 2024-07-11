@@ -3,7 +3,7 @@ const Router = require("@koa/router")
 const serve = require("koa-static");
 // const path = require("path");
 
-// const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // usually "app" is used here but I like "server" more
 const server = new Koa();
@@ -25,6 +25,6 @@ console.log("==========================");
 console.log(process.env.PORT, process.env.NODE_ENV);
 console.log("==========================");
 
-server.listen(5501, () => {
-  console.log("Koa server is running on port", 5501);
+server.listen(PORT, () => {
+  console.log("Koa server is running on port", PORT);
 });
