@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 
-let target;
-if (process.env.NODE_ENV == 'production') {
-  target = "node-koa-app.azurewebsites.net"
-}
-else {
-	target = 'http://localhost:5501'
-}
+// let target;
+// if (process.env.NODE_ENV == 'production') {
+//   target = "node-koa-app.azurewebsites.net"
+// }
+// else {
+// 	target = 'http://localhost:5501'
+// }
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,9 +15,9 @@ export default defineConfig({
 	server: {
     proxy: {
       "/test": {
-        target,
+        target: 'http://localhost:8080',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api"),
+        rewrite: (path) => path.replace(/^\/test/, "/test"),
       },
     },
   },

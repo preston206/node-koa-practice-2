@@ -11,7 +11,7 @@ const router = new Router();
 
 // router.get("/", (ctx) => ctx.body = "Oh, hi there.");
 
-router.get("/", (ctx) => serve(path.resolve(__dirname, 'client', 'dist', 'index.html')));
+router.get("/", (ctx) => ctx.body = serve(path.resolve(__dirname, 'client', 'dist', 'index.html')));
 
 router.get("/test", (ctx) => {
   ctx.body = {message: "Hello, you have passed the test."}
@@ -24,9 +24,9 @@ server.use(router.routes());
 
 // console.log('---PROC ENV', process.env);
 
-console.log("==========================");
-console.log(process.env.PORT, process.env.NODE_ENV);
-console.log("==========================");
+// console.log("==========================");
+// console.log(process.env.PORT, process.env.NODE_ENV);
+// console.log("==========================");
 
 server.listen(PORT, () => {
   console.log("Koa server is running on port", PORT);
