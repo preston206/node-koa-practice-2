@@ -21,9 +21,9 @@ server.use(router.routes());
 
 // console.log('---PROC ENV', process.env);
 
-// console.log("=============");
-// console.log(process.env.PORT, process.env.NODE_ENV);
-// console.log("=============");
+console.log("==========================");
+console.log(process.env.PORT, process.env.NODE_ENV);
+console.log("==========================");
 
 server.listen(PORT, () => {
   console.log("Koa server is running on port", PORT);
