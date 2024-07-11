@@ -1,7 +1,7 @@
 const Koa = require("koa");
 const Router = require("@koa/router")
 const serve = require("koa-static");
-// const path = require("path");
+const path = require("path");
 
 const PORT = process.env.PORT || 8080;
 
@@ -14,8 +14,8 @@ router.get("/test", (ctx) => {
   ctx.body = {message: "Hello, you have passed the test."}
 })
 
-// server.use(serve(path.resolve(__dirname, '../client/dist')));
-server.use(serve('dist'));
+server.use(serve(path.resolve(__dirname, '../client/dist')));
+// server.use(serve('dist'));
 
 server.use(router.routes());
 
