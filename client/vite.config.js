@@ -7,7 +7,7 @@ export default defineConfig({
 	server: {
     proxy: {
       "/test": {
-        target: "http://localhost:8080",
+        target: "node-koa-app.azurewebsites.net",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
