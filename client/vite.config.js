@@ -14,10 +14,17 @@ export default defineConfig({
 	plugins: [preact()],
 	server: {
     proxy: {
-      "/test": {
+      "/api/test": {
         target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/test/, "/test"),
+        changeOrigin: true
+      },
+      "/api/dish": {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      "/api/allPublicMainDishes": {
+        target: 'http://localhost:8080',
+        changeOrigin: true
       },
     },
   },
