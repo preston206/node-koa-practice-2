@@ -58,203 +58,203 @@ server.use(koaBody());
 
 router
   .get("/", (ctx) => ctx.body = serve(path.resolve(__dirname, 'client', 'dist', 'index.html')))
-  .get("/api/test", async (ctx) => {
-    let doc;
-    try {
-      doc = await database.findOne({ "name": "Chicken and Waffles Test" });
-    }
-    catch (error) {
-      console.log('---MONGO DB FIND ERROR 1', error);
-    }
+  // .get("/api/test", async (ctx) => {
+  //   let doc;
+  //   try {
+  //     doc = await database.findOne({ "name": "Chicken and Waffles Test" });
+  //   }
+  //   catch (error) {
+  //     console.log('---MONGO DB FIND ERROR 1', error);
+  //   }
 
-    // console.log('---DOC', doc);
-    ctx.status = 200;
-    ctx.body = doc;
-    // next();
-  })
-  .get("/api/dishByName/:name", async (ctx) => {
+  //   // console.log('---DOC', doc);
+  //   ctx.status = 200;
+  //   ctx.body = doc;
+  //   // next();
+  // })
+  // .get("/api/dishByName/:name", async (ctx) => {
 
-    // console.log('---GET BY NAME CTX REQ', ctx.params);
+  //   // console.log('---GET BY NAME CTX REQ', ctx.params);
 
-    console.log('---GET CTX REQ PARAMS', ctx.params.name);
+  //   console.log('---GET CTX REQ PARAMS', ctx.params.name);
 
-    let doc;
-    try {
-      doc = await database.findOne({ "name": ctx.params.name });
-    }
-    catch (error) {
-      console.log('---MONGO DB FIND ERROR 2', error);
-    }
+  //   let doc;
+  //   try {
+  //     doc = await database.findOne({ "name": ctx.params.name });
+  //   }
+  //   catch (error) {
+  //     console.log('---MONGO DB FIND ERROR 2', error);
+  //   }
 
-    // console.log('---DOC', doc);
-    // ctx.body = doc;
-    ctx.status = 200;
-    ctx.body = doc;
-    // next();
-  })
-  .get("/api/dishById/:id", async (ctx) => {
+  //   // console.log('---DOC', doc);
+  //   // ctx.body = doc;
+  //   ctx.status = 200;
+  //   ctx.body = doc;
+  //   // next();
+  // })
+  // .get("/api/dishById/:id", async (ctx) => {
 
-    // console.log('---GET BY NAME CTX REQ', ctx.params);
+  //   // console.log('---GET BY NAME CTX REQ', ctx.params);
 
-    console.log('---GET CTX REQ PARAMS ID', ctx.params.id);
+  //   console.log('---GET CTX REQ PARAMS ID', ctx.params.id);
 
-    let doc;
-    try {
-      // in Azure Cosmos shell I don't need to use "new ObjectId()"
-      // but in node env I need to "require" it at the top and then do it like this
-      doc = await database.findOne({ _id: new ObjectId(ctx.params.id) });
-    }
-    catch (error) {
-      console.log('---MONGO DB FIND ERROR 3', error);
-    }
+  //   let doc;
+  //   try {
+  //     // in Azure Cosmos shell I don't need to use "new ObjectId()"
+  //     // but in node env I need to "require" it at the top and then do it like this
+  //     doc = await database.findOne({ _id: new ObjectId(ctx.params.id) });
+  //   }
+  //   catch (error) {
+  //     console.log('---MONGO DB FIND ERROR 3', error);
+  //   }
 
-    console.log('---GET BY ID DOC', doc);
+  //   console.log('---GET BY ID DOC', doc);
 
-    // console.log('---DOC', doc);
-    ctx.status = 200;
-    ctx.body = doc;
-    // ctx.status = 200;
-  })
-  .get("/api/allPublicMainDishes/:type", async (ctx) => {
+  //   // console.log('---DOC', doc);
+  //   ctx.status = 200;
+  //   ctx.body = doc;
+  //   // ctx.status = 200;
+  // })
+  // .get("/api/allPublicMainDishes/:type", async (ctx) => {
 
-    // console.log('---GET BY NAME CTX REQ', ctx.params);
+  //   // console.log('---GET BY NAME CTX REQ', ctx.params);
 
-    console.log('---GET CTX REQ PARAMS TYPE', ctx.params.type);
+  //   console.log('---GET CTX REQ PARAMS TYPE', ctx.params.type);
 
-    let doc;
-    try {
-      // in Azure Cosmos shell I don't need to use "new ObjectId()"
-      // but in node env I need to "require" it at the top and then do it like this
-      doc = await database.find({ "type": ctx.params.type }).toArray();
-    }
-    catch (error) {
-      console.log('---MONGO DB FIND PUB MAIN DISHES ERROR', error);
-    }
+  //   let doc;
+  //   try {
+  //     // in Azure Cosmos shell I don't need to use "new ObjectId()"
+  //     // but in node env I need to "require" it at the top and then do it like this
+  //     doc = await database.find({ "type": ctx.params.type }).toArray();
+  //   }
+  //   catch (error) {
+  //     console.log('---MONGO DB FIND PUB MAIN DISHES ERROR', error);
+  //   }
 
-    console.log('---GET MAIN DISHES DOCS', doc);
+  //   console.log('---GET MAIN DISHES DOCS', doc);
 
-    // console.log('---DOC', doc);
-    // ctx.body = JSON.parse(doc);
-    // ctx.body = JSON.stringify(doc);
-    ctx.status = 200;
-    ctx.body = doc;
-    // ctx.status = 200;
-  })
-  .post("/api/dish", async (ctx) => {
-    // console.log('---INSERT REQUEST BODY', JSON.parse(ctx.request.body));
+  //   // console.log('---DOC', doc);
+  //   // ctx.body = JSON.parse(doc);
+  //   // ctx.body = JSON.stringify(doc);
+  //   ctx.status = 200;
+  //   ctx.body = doc;
+  //   // ctx.status = 200;
+  // })
+  // .post("/api/dish", async (ctx) => {
+  //   // console.log('---INSERT REQUEST BODY', JSON.parse(ctx.request.body));
 
-    const body = JSON.parse(ctx.request.body);
+  //   const body = JSON.parse(ctx.request.body);
 
-    console.log('---POST REQ BODY', body);
-    // console.log('---POST REQ BODY NAME', body.name);
+  //   console.log('---POST REQ BODY', body);
+  //   // console.log('---POST REQ BODY NAME', body.name);
 
-    const months = [
-      "Jan.",
-      "Feb.",
-      "Mar.",
-      "Apr.",
-      "May",
-      "Jun.",
-      "Jul.",
-      "Aug.",
-      "Sep.",
-      "Oct.",
-      "Nov.",
-      "Dec."
-    ]
+  //   const months = [
+  //     "Jan.",
+  //     "Feb.",
+  //     "Mar.",
+  //     "Apr.",
+  //     "May",
+  //     "Jun.",
+  //     "Jul.",
+  //     "Aug.",
+  //     "Sep.",
+  //     "Oct.",
+  //     "Nov.",
+  //     "Dec."
+  //   ]
 
-    const date = new Date();
-    const month = months[date.getMonth()];
-    const day = date.getDate();
-    const year = date.getFullYear();
-    const dateCompiled = `${month} ${day}, ${year}`;
+  //   const date = new Date();
+  //   const month = months[date.getMonth()];
+  //   const day = date.getDate();
+  //   const year = date.getFullYear();
+  //   const dateCompiled = `${month} ${day}, ${year}`;
 
-    const dish = {
-      docType: "dish",
-      type: body.dish_type,
-      createdAt: dateCompiled,
-      modifiedAt: null,
-      isPrivate: body.is_private,
-      authorId: body.account_id,
-      authorName: body.account_name,
-      name: body.dish_name,
-      description: body.description,
-      ingredients: body.ingredients,
-      instructions: body.instructions,
-      notes: body.notes
-    }
+  //   const dish = {
+  //     docType: "dish",
+  //     type: body.dish_type,
+  //     createdAt: dateCompiled,
+  //     modifiedAt: null,
+  //     isPrivate: body.is_private,
+  //     authorId: body.account_id,
+  //     authorName: body.account_name,
+  //     name: body.dish_name,
+  //     description: body.description,
+  //     ingredients: body.ingredients,
+  //     instructions: body.instructions,
+  //     notes: body.notes
+  //   }
 
-    const responseObj = {
-      error: false,
-      error_message: null,
-      message: "",
-      mealId: ""
-    }
+  //   const responseObj = {
+  //     error: false,
+  //     error_message: null,
+  //     message: "",
+  //     mealId: ""
+  //   }
 
-    let doc;
-    try {
-      doc = await database.insertOne(dish);
-    } catch (error) {
-      console.log('---MONGO DB INSERT ERROR', error);
-      responseObj.error = true;
-      responseObj.error_message = error;
-      ctx.body = responseObj;
-      ctx.status = 400;
-    }
+  //   let doc;
+  //   try {
+  //     doc = await database.insertOne(dish);
+  //   } catch (error) {
+  //     console.log('---MONGO DB INSERT ERROR', error);
+  //     responseObj.error = true;
+  //     responseObj.error_message = error;
+  //     ctx.body = responseObj;
+  //     ctx.status = 400;
+  //   }
 
-    console.log('---POST RESPONSE FROM MONGO', doc);
+  //   console.log('---POST RESPONSE FROM MONGO', doc);
 
-    responseObj.mealId = doc.insertedId;
-    responseObj.message = "Document added";
-    ctx.status = 201;
-    ctx.body = responseObj;
-  })
-  .post("/api/account", async (ctx) => {
-    // console.log('---INSERT REQUEST BODY', JSON.parse(ctx.request.body));
+  //   responseObj.mealId = doc.insertedId;
+  //   responseObj.message = "Document added";
+  //   ctx.status = 201;
+  //   ctx.body = responseObj;
+  // })
+  // .post("/api/account", async (ctx) => {
+  //   // console.log('---INSERT REQUEST BODY', JSON.parse(ctx.request.body));
 
-    const body = JSON.parse(ctx.request.body);
+  //   const body = JSON.parse(ctx.request.body);
 
-    console.log('---POST ACCT REQ BODY', body);
-    // console.log('---POST REQ BODY NAME', body.name);
+  //   console.log('---POST ACCT REQ BODY', body);
+  //   // console.log('---POST REQ BODY NAME', body.name);
 
-    // const account = {
-    //   docType: "account",
-    //   type: body.type,
-    //   isPrivate: body.isPrivate,
-    //   authorId: body.accountId,
-    //   authorName: body.accountName,
-    //   name: body.name,
-    //   description: body.description,
-    //   ingredients: body.ingredients,
-    //   instructions: body.instructions,
-    //   notes: body.notes
-    // }
+  //   // const account = {
+  //   //   docType: "account",
+  //   //   type: body.type,
+  //   //   isPrivate: body.isPrivate,
+  //   //   authorId: body.accountId,
+  //   //   authorName: body.accountName,
+  //   //   name: body.name,
+  //   //   description: body.description,
+  //   //   ingredients: body.ingredients,
+  //   //   instructions: body.instructions,
+  //   //   notes: body.notes
+  //   // }
 
-    const responseObj = {
-      error: false,
-      error_message: null,
-      message: "",
-      mealId: ""
-    }
+  //   const responseObj = {
+  //     error: false,
+  //     error_message: null,
+  //     message: "",
+  //     mealId: ""
+  //   }
 
-    // let doc;
-    // try {
-    //   doc = await database.insertOne(dish);
-    // } catch (error) {
-    //   console.log('---MONGO DB INSERT ERROR', error);
-    //   responseObj.error = true;
-    //   responseObj.error_message = error;
-    //   ctx.body = responseObj;
-    //   ctx.status = 400;
-    // }
+  //   // let doc;
+  //   // try {
+  //   //   doc = await database.insertOne(dish);
+  //   // } catch (error) {
+  //   //   console.log('---MONGO DB INSERT ERROR', error);
+  //   //   responseObj.error = true;
+  //   //   responseObj.error_message = error;
+  //   //   ctx.body = responseObj;
+  //   //   ctx.status = 400;
+  //   // }
 
-    // console.log('---POST RESPONSE FROM MONGO', doc);
+  //   // console.log('---POST RESPONSE FROM MONGO', doc);
 
-    responseObj.mealId = doc.insertedId;
-    responseObj.message = "Account created";
-    ctx.status = 201;
-    ctx.body = responseObj;
-  })
+  //   responseObj.mealId = doc.insertedId;
+  //   responseObj.message = "Account created";
+  //   ctx.status = 201;
+  //   ctx.body = responseObj;
+  // })
 
 // server.use(serve(path.resolve(__dirname, '../client/dist')));
 // server.use(serve('dist'));
