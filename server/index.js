@@ -1,15 +1,15 @@
 require("dotenv").config();
 const Koa = require("koa");
 const Router = require("@koa/router")
-const serve = require("koa-static");
-const { koaBody } = require('koa-body');
-const path = require("path");
-const { MongoClient, ObjectId } = require("mongodb");
+// const serve = require("koa-static");
+// const { koaBody } = require('koa-body');
+// const path = require("path");
+// const { MongoClient, ObjectId } = require("mongodb");
 
 // connect to DB
-const url = process.env.DATABASE_URL;
-const client = new MongoClient(url);
-const dbName = process.env.DATABASE_NAME;
+// const url = process.env.DATABASE_URL;
+// const client = new MongoClient(url);
+// const dbName = process.env.DATABASE_NAME;
 
 // async function connectToDb() {
 //   // Use connect method to connect to the server
@@ -31,19 +31,19 @@ const dbName = process.env.DATABASE_NAME;
 //   .catch(error => console.error("---DB CONNECT ERROR:", error))
 //   .finally(() => client.close());
 
-let database;
+// let database;
 
-client.connect()
-  .then(conn => {
-    console.log('---connected to the database server');
-    // console.log('---CONNECTION', conn);
-    return conn.db(dbName).collection('TestCollection');
-  })
-  .then(db => {
-    console.log('---connected to the database')
-    database = db;
-  })
-  .catch(error => console.log('---CONN ERROR', error))
+// client.connect()
+//   .then(conn => {
+//     console.log('---connected to the database server');
+//     // console.log('---CONNECTION', conn);
+//     return conn.db(dbName).collection('TestCollection');
+//   })
+//   .then(db => {
+//     console.log('---connected to the database')
+//     database = db;
+//   })
+//   .catch(error => console.log('---CONN ERROR', error))
 // .finally(() => client.close());
 
 const PORT = process.env.PORT || 8080;
@@ -54,10 +54,10 @@ const router = new Router();
 
 // router.get("/", (ctx) => ctx.body = "Oh, hi there.");
 
-server.use(koaBody());
+// server.use(koaBody());
 
-router
-  .get("/", (ctx) => ctx.body = serve(path.resolve(__dirname, 'client', 'dist', 'index.html')))
+// router
+//   .get("/", (ctx) => ctx.body = serve(path.resolve(__dirname, 'client', 'dist', 'index.html')))
   // .get("/api/test", async (ctx) => {
   //   let doc;
   //   try {
@@ -259,9 +259,9 @@ router
 // server.use(serve(path.resolve(__dirname, '../client/dist')));
 // server.use(serve('dist'));
 
-server
-  .use(router.routes())
-  .use(router.allowedMethods());
+// server
+//   .use(router.routes())
+//   .use(router.allowedMethods());
 
 // console.log('---PROC ENV', process.env);
 
